@@ -312,6 +312,8 @@ function displayGameOver() {
     ctx.fillText("GAME OVER", boardWidth / 2, boardHeight / 2);
 
     running = false;
+    
+    resetButton.focus();
 
 };
 

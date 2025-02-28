@@ -44,7 +44,20 @@ startButton.addEventListener('click', () => {
 
 });
 
-resetButton.addEventListener('click', resetGame);
+resetButton.addEventListener('click', () => {
+
+    // 避免重複 RESET
+
+    if (running) return;
+
+    const parentElement = startButton.parentElement;
+
+    if (parentElement.clientHeight) { parentElement.remove(); }
+    
+    resetGame();
+    gameStart();
+
+});
 
 /* functions */
 
@@ -204,6 +217,8 @@ function drawSnake() {
 
 function changeDirection(event) {
 
+    if (!running) return;
+
     event.preventDefault();
 
     const keyPressed = event.keyCode;
@@ -312,7 +327,5 @@ function resetGame() {
         { x: unitSize * 2, y: 0 },
         { x: 0, y: 0 }
     ];
-
-    gameStart();
 
 };
